@@ -7,9 +7,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
-    // NOTE: If you do not configure the property in properties file and havingValue = "true" with matchIfMissing = true does not make sense.
-    // Possibly means if you're using havingValue = "true", that means your MUST need to have a property value in *.properties file.
-    // BUT, you have added matchIfMissing = true. So no matter your *.properties file has the value or not ....
+    // NOTE: "If you do not configure the property in properties file and havingValue = "true" with matchIfMissing = true does not make sense."
+    // Means if you're using havingValue = "true", that means your MUST need to have a property value in *.properties file.
+    // BUT, you have added matchIfMissing = true. So no matter your *.properties file has the value or not, the FIRST and ONLY thing that Spring Boot cares is havingValue.
+    // That's the reason why havingValue = "true" with matchIfMissing = true does not make sense
 
     @Bean
     // Scenario 1
@@ -40,7 +41,6 @@ public class SpringConfig {
     // If havingValue = true, but there's no module.enabled property --> Loaded successfully
     // If havingValue = true, but module.enabled=true --> Loaded successfully
     // If havingValue = true, but module.enabled=false --> Not loaded, found different value in property
-
 
     public SpringService springService() {
         return new SpringService();
